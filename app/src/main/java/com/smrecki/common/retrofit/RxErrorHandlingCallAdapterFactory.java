@@ -62,8 +62,6 @@ public class RxErrorHandlingCallAdapterFactory extends CallAdapter.Factory {
 
         private RetrofitException asRetrofitException(Throwable throwable) {
             Log.d("RxErrorHandler", throwable.getMessage());
-            throwable.printStackTrace();
-
             // We had non-200 http error
             if (throwable instanceof HttpException) {
                 HttpException httpException = (HttpException) throwable;

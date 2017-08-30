@@ -27,17 +27,21 @@ public class GitRepository implements GitRepoData {
     }
 
     @Override
-    public Observable<List<GitRepo>> getRepositories(String username, int page, int perPage) {
-        return Observable.concat(
+    public Observable<List<GitRepo>> getRepositories(final String username, final int page, final int perPage) {
+        return Observable.concatDelayError(
                 loadRemoteRepos(username, page, perPage),
                 localData.getRepositories(username, page, perPage))
                 .filter(new Func1<List<GitRepo>, Boolean>() {
+                    boolean delivered = false;
                     @Override
-                    public Boolean call(List<GitRepo> repoList) {
-                        return !repoList.isEmpty();
+                    public Boolean call(List<GitRepo> gitRepos) {
+                        if (!gitRepos.isEmpty() && !delivered) {
+                            delivered = true;
+                            return true;
+                        }
+                        return false;
                     }
-                })
-                .first();
+                });
     }
 
     private Observable<List<GitRepo>> loadRemoteRepos(String username, int page, int perPage) {
@@ -53,7 +57,7 @@ public class GitRepository implements GitRepoData {
 
     @Override
     public Observable<GitRepo> getRepository(long id) {
-        return Observable.concat(
+        return Observable.concatDelayError(
                 loadRemoteRepository(id),
                 localData.getRepository(id)
         ).filter(new Func1<GitRepo, Boolean>() {

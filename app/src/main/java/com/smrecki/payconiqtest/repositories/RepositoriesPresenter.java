@@ -59,7 +59,7 @@ public class RepositoriesPresenter extends BasePresenter<RepositoriesContract.Vi
                         page,
                         perPage
                 ).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
+                        .observeOn(AndroidSchedulers.mainThread(), true)
                         .subscribe(new Subscriber<List<GitRepo>>() {
                             @Override
                             public void onCompleted() {
@@ -80,6 +80,10 @@ public class RepositoriesPresenter extends BasePresenter<RepositoriesContract.Vi
                                 } else {
                                     mGitRepoList.addAll(gitRepos);
                                     getView().addRepositories(gitRepos);
+                                }
+
+                                if (gitRepos.isEmpty()) {
+                                    getView().showPaginationLoader(false);
                                 }
                             }
                         }));
