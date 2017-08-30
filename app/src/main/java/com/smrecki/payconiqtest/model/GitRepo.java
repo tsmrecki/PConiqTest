@@ -57,4 +57,20 @@ public class GitRepo {
     public String getHomepageUrl() {
         return homepageUrl;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GitRepo)) return false;
+
+        GitRepo gitRepo = (GitRepo) o;
+
+        return id == gitRepo.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
 }

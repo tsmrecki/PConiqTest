@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.smrecki.common.dagger.qualifiers.ActivityContext;
+import com.smrecki.payconiqtest.repositories.RepositoriesContract;
+import com.smrecki.payconiqtest.repositories.RepositoriesPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -37,4 +39,8 @@ public class ActivityModule {
         return new CompositeSubscription();
     }
 
+    @Provides
+    RepositoriesContract.Presenter<RepositoriesContract.View> repoPresenter(RepositoriesPresenter presenter) {
+        return presenter;
+    }
 }

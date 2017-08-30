@@ -3,6 +3,7 @@ package com.smrecki.common.dagger.components;
 import com.smrecki.common.base.views.BaseActivity;
 import com.smrecki.common.dagger.modules.ActivityModule;
 import com.smrecki.common.dagger.scopes.ActivityScope;
+import com.smrecki.payconiqtest.repositories.RepositoriesActivity;
 
 import dagger.Component;
 
@@ -16,5 +17,7 @@ public interface ActivityComponent {
 
     //activities
     void inject(BaseActivity baseActivity);
+
+    void inject(RepositoriesActivity repositoriesActivity);
 
 }

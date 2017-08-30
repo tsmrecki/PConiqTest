@@ -52,6 +52,9 @@ public class BasePresenter<TView extends BaseContract.View> implements BaseContr
     @Override
     public void handleError(Throwable e) {
         e.printStackTrace();
+        getView().showProgressCircle(false);
+        getView().showLoader(false);
+
         if (e instanceof RetrofitException) {
             RetrofitException re = (RetrofitException) e;
             if (!re.processNetworkError(getView())) {
