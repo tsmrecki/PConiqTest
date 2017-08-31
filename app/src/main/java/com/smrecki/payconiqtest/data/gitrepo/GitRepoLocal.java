@@ -20,8 +20,6 @@ import rx.Observable;
 /**
  * Created by tomislav on 29/08/2017.
  */
-
-//TODO: implement local repo
 public class GitRepoLocal implements GitRepoData {
     @Override
     public Observable<List<GitRepo>> getRepositories(final String username, final int page, final int perPage) {

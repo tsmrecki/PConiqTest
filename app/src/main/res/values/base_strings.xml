@@ -6,7 +6,7 @@
     <string name="ef_ok">OK</string>
     <string name="please_wait">Please wait…</string>
     <string name="share_via">Share via…</string>
-    <string name="network_error">Network error, check your internet connection.</string>
+    <string name="network_error">No data from server, check your network connection.</string>
     <string name="enable_location">Enable location</string>
     <string name="skip">Skip</string>
     <string name="enter_data">Enter data</string>

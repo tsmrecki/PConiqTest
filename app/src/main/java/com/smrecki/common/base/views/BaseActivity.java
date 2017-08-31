@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -114,7 +116,9 @@ public abstract class BaseActivity extends PermisoActivity implements BaseContra
      */
     @Override
     public void showError(String errorMessage) {
-        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_LONG);
+        toast.getView().setBackground(ContextCompat.getDrawable(this, R.drawable.toast_background));
+        toast.show();
     }
 
     @Override
@@ -179,6 +183,11 @@ public abstract class BaseActivity extends PermisoActivity implements BaseContra
     @Override
     public void showShortInfo(int stringResourceId) {
         showShortInfo(getString(stringResourceId));
+    }
+
+    @Override
+    public void showSnackbar(int stringResId) {
+        Snackbar.make(((ViewGroup) findViewById(android.R.id.content)).getChildAt(0), stringResId, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

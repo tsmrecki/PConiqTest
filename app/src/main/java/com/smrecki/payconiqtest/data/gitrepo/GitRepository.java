@@ -4,6 +4,7 @@ import com.smrecki.common.dagger.qualifiers.LocalData;
 import com.smrecki.common.dagger.qualifiers.RemoteData;
 import com.smrecki.payconiqtest.model.GitRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,7 +42,7 @@ public class GitRepository implements GitRepoData {
                         }
                         return false;
                     }
-                });
+                }).defaultIfEmpty(new ArrayList<GitRepo>());
     }
 
     private Observable<List<GitRepo>> loadRemoteRepos(String username, int page, int perPage) {

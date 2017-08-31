@@ -68,7 +68,7 @@ public class RetrofitException extends RuntimeException {
 
     public boolean processNetworkError(BaseContract.View view) {
         if (kind == Kind.NETWORK) {
-            view.showShortInfo(R.string.network_error);
+            view.showError(R.string.network_error);
             return true;
         }
         return false;

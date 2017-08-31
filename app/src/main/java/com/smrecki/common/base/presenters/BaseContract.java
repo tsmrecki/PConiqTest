@@ -29,6 +29,8 @@ public class BaseContract {
 
         void showError(int stringResourceId);
 
+        void showSnackbar(int stringResId);
+
         void showLoader(boolean show);
 
         void showLoader(boolean show, boolean cancelable);

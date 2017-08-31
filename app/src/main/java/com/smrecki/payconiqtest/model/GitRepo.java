@@ -52,6 +52,15 @@ public class GitRepo extends BaseModel {
     @SerializedName("updated_at")
     Date updatedAt;
 
+    public GitRepo() {
+    }
+
+    public GitRepo(long id, String name, String fullName) {
+        this.id = id;
+        this.name = name;
+        this.fullName = fullName;
+    }
+
 
     public long getId() {
         return id;
