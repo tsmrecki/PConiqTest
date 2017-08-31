@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PayconiqTest</string>
+    <string name="search_repo_owner">Search repo owner</string>
+    <string name="enter_username">Enter username</string>
 </resources>

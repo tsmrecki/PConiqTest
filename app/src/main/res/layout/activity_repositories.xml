@@ -20,9 +20,9 @@
             app:expandedTitleMarginStart="24dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <FrameLayout
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="120dp" />
+                android:layout_height="140dp" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -53,5 +53,15 @@
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/search_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:fabSize="mini"
+        app:layout_anchor="@id/app_bar_layout"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_search_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

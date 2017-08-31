@@ -26,6 +26,7 @@ class GitRepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<GitRepo> mGitRepoList = new ArrayList<>();
     private boolean showLoader = true;
+    private OnGitRepoInteractionListener mOnGitRepoInteractionListener;
 
     void setGitRepoList(List<GitRepo> gitRepoList) {
         mGitRepoList.clear();
@@ -53,7 +54,17 @@ class GitRepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_REPO) {
-            return new RepoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.repository, parent, false));
+            final RepoViewHolder repoHolder = new RepoViewHolder(
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.repository, parent, false));
+            repoHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnGitRepoInteractionListener != null) {
+                        mOnGitRepoInteractionListener.onGitRepoClicked(mGitRepoList.get(repoHolder.getAdapterPosition()), v);
+                    }
+                }
+            });
+            return repoHolder;
         } else {
             return new LoaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.loader, parent, false));
         }
@@ -83,6 +94,16 @@ class GitRepoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else {
             return VIEW_TYPE_REPO;
         }
+    }
+
+    public void setOnGitRepoInteractionListener(
+            OnGitRepoInteractionListener onGitRepoInteractionListener) {
+        mOnGitRepoInteractionListener = onGitRepoInteractionListener;
+    }
+
+
+    public interface OnGitRepoInteractionListener {
+        void onGitRepoClicked(GitRepo gitRepo, View view);
     }
 
     static class RepoViewHolder extends RecyclerView.ViewHolder {

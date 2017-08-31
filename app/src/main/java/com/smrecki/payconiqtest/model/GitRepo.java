@@ -41,7 +41,7 @@ public class GitRepo extends BaseModel {
     String description;
 
     @Column
-    @SerializedName("homepage")
+    @SerializedName("html_url")
     String homepageUrl;
 
     @Column

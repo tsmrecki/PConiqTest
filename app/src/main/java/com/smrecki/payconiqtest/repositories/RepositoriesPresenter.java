@@ -82,7 +82,7 @@ public class RepositoriesPresenter extends BasePresenter<RepositoriesContract.Vi
                                     getView().addRepositories(gitRepos);
                                 }
 
-                                if (gitRepos.isEmpty()) {
+                                if (gitRepos.isEmpty() || gitRepos.size() < PER_PAGE) {
                                     getView().showPaginationLoader(false);
                                 }
                             }
